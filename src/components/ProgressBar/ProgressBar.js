@@ -16,7 +16,7 @@ const ProgressContainer = styled.div`
 
 const ProgressOverflowBox = styled.div`
   overflow: clip;
-  border-radius: inherit;
+  border-radius: 4px;
   height: 100%;
   width: 100%;
 `
