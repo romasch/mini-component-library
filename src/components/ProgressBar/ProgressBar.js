@@ -5,27 +5,26 @@ import styled from 'styled-components';
 import {COLORS} from '../../constants';
 
 
-const Progress = styled.div`
-
+const ProgressContainer = styled.div`
   height: var(--height);
   padding: var(--padding);
-  border-radius: var(--border-radius);
 
   background: ${COLORS.transparentGray15};
+  border-radius: var(--border-radius);
   box-shadow: inset 0 2px 4px ${COLORS.transparentGray35};
+`
 
-  & .inner-element {
-    border-radius: inherit;
-    overflow: clip;
-    height: 100%;
-    width: 100%;
-  }
+const ProgressOverflowBox = styled.div`
+  overflow: clip;
+  border-radius: inherit;
+  height: 100%;
+  width: 100%;
+`
 
-  & .progress-value {
-    background: ${COLORS.primary};
-    height: 100%;
-    width: var(--value);
-  }
+const ProgressValue = styled.div`
+  background: ${COLORS.primary};
+  height: 100%;
+  width: var(--value);
 `
 
 const ProgressBar = ({value, size}) => {
@@ -53,12 +52,11 @@ const ProgressBar = ({value, size}) => {
     }
     const properties = sizes[size] ?? defaults;
 
-    return <Progress value={value} max={100} style={properties} aria-valuenow={value} role={"progressbar"}>
-        <div className={"inner-element"}>
-            <div className={"progress-value"} style={{width: size + "%"}}></div>
-        </div>
-
-    </Progress>;
+    return <ProgressContainer style={properties} aria-valuenow={value} role={"progressbar"}>
+        <ProgressOverflowBox>
+            <ProgressValue/>
+        </ProgressOverflowBox>
+    </ProgressContainer>;
 };
 
 export default ProgressBar;
