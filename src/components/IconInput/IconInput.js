@@ -6,15 +6,17 @@ import {COLORS} from "../../constants";
 
 const SIZES = {
     small: {
-        iconSize: 14,
+        height: 24,
+        iconPadding: 24,
+        iconSize: 16,
         fontSize: 14,
-        iconPadding: 20,
         borderWidth: 1,
     },
     large: {
-        iconSize: 18,
+        height: 36,
+        iconPadding: 36,
+        iconSize: 24,
         fontSize: 18,
-        iconPadding: 30,
         borderWidth: 2,
     }
 }
@@ -37,6 +39,7 @@ const IconInput = (
 
     return <Wrapper style={{
         "--width": width + "px",
+        "--height": sizeProps.height / 16 + "rem",
         "--font-size": sizeProps.fontSize + "px",
         "--icon-padding": sizeProps.iconPadding + "px",
         "--border-width": sizeProps.borderWidth + "px",
@@ -48,9 +51,12 @@ const IconInput = (
 };
 
 
-const Wrapper = styled.div`
+const Wrapper = styled.label`
   position: relative;
+
+  display: block;
   width: var(--width);
+  height: var(--height);
 
   font-family: Roboto, sans-serif;
   font-size: var(--font-size);
@@ -65,9 +71,8 @@ const Wrapper = styled.div`
 const LeftIcon = styled(Icon)`
   position: absolute;
   top: 0;
-  bottom: 2px;
+  bottom: 0;
   margin: auto 0;
-  pointer-events: none;
 `;
 
 const Input = styled.input`
@@ -75,6 +80,7 @@ const Input = styled.input`
   border: none;
   border-bottom: var(--border-width) solid ${COLORS.black};
   width: 100%;
+  height: 100%;
 
   font-size: inherit;
   font-weight: inherit;
